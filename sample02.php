@@ -19,7 +19,7 @@
 <h2>Practice</h2>
 <pre>
 <?php
-print("練習試合マッチ\n高校野球");
+print("first-commit");
 ?>
 </pre>
 </main>
