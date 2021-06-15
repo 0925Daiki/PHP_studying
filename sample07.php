@@ -29,7 +29,7 @@ for($i = 1; $i <= 365; $i++){
   print("\n");
 }
 //閉じカッコと同じ使用の方法(endforを使う),endforの方がわかりやすい
-//for($i = 1; $i <= 365; $i++):
+//for($i = 1; $i <= 365; $i++): //ダブルコロンをつける
   //$date = strtotime('+' . $i . 'day');
   //print(date('n/j(D)', $date));
   //print("\n");
