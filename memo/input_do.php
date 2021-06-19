@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="../css/style.css">
 
 <title>PHP</title>
 </head>
@@ -22,13 +22,10 @@
 //データベースと接続 catch以降は「例外処理」
 try{
   $db = new PDO('mysql:dbname=my_db;host=127.0.0.1;charset=utf8','root','');
+
+  $db -> exec('INSERT INTO memos SET memo="' . $_POST['memo'] . '", created_at=NOW()');
 } catch(PDOException $e){
   echo 'DB接続エラー:' . $e->getMessage();
-}
-
-$records = $db->query('SELECT * FROM my_items');
-while($record = $records->fetch()){
-  print($record['item_name'] . "\n");
 }
 ?>
 </pre>
