@@ -37,8 +37,9 @@ $page = min($page, $maxPage);
 //5ページに表示を設定
 $start = ($page - 1) * 5;
 
-//投稿を「取得する」 (m/p→membersテーブルの省略形 p*=postsテーブルのすべての値 p.created DESC→日付順に降順で並ばせる)
+//投稿を「取得する」 (m/p→membersテーブルの省略形 p*=postsテーブルのすべての値 p.created DESC→日付順に降順で並ばせる LIMIT→5件まで表示)
 $posts = $db->prepare('SELECT m.name, m.picture, p.* FROM members m, posts p WHERE m.id=p.member_id ORDER BY p.created DESC LIMIT ? , 5');
+
 //ページネーション
 $posts -> bindParam(1, $start, PDO::PARAM_INT);
 $posts -> execute();
@@ -90,7 +91,7 @@ if (isset($_REQUEST['res'])){
 <?php
 //$post = データベースから一件のデータを取得する
 //メッセージ一覧表示
-foreach($posts as $post):?>
+foreach($posts as $post): ?>
     <div class="msg">
     <img src="member_picture/<?php print(htmlspecialchars($post['picture'],ENT_QUOTES)); ?>" width="48" height="48" alt="<?php print(htmlspecialchars($post['name'],ENT_QUOTES)); ?>" />
     <p><?php print(htmlspecialchars($post['message'],ENT_QUOTES)); ?><span class="name">（<?php print(htmlspecialchars($post['name'],ENT_QUOTES)); ?>）</span>[<a href="index.php?res=<?php print(htmlspecialchars($post['id'],ENT_QUOTES)); ?>">Re</a>]</p>
