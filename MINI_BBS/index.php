@@ -83,8 +83,11 @@ foreach($posts as $post):?>
 <a href="view.php?id=<?php print(htmlspecialchars($post['reply_message_id'],ENT_QUOTES)); ?>">
 返信元のメッセージ</a>
 <?php endif; ?>
-[<a href="delete.php?id="
+
+<?php if($_SESSION['id'] == $post['member_id']): ?>
+[<a href="delete.php?id=<?php print(htmlspecialchars($post['id']));?>"
 style="color: #F33;">削除</a>]
+<?php endif; ?>
     </p>
     </div>
 <?php
